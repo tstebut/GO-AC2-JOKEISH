@@ -13,14 +13,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Response Response
 type Response struct {
 	Message string `json:"message"`
 }
 
+// Jwks Jwks
 type Jwks struct {
 	Keys []JSONWebKeys `json:"keys"`
 }
 
+// JSONWebKeys JSONWebKeys
 type JSONWebKeys struct {
 	Kty string   `json:"kty"`
 	Kid string   `json:"kid"`
@@ -30,6 +33,7 @@ type JSONWebKeys struct {
 	X5c []string `json:"x5c"`
 }
 
+// Joke joke
 type Joke struct {
 	ID    int    `json:"id" binding:"required"`
 	Likes int    `json:"likes"`
@@ -68,8 +72,8 @@ func main() {
 				"message": "pong",
 			})
 		})
-		api.GET("/jokes", auth.authMiddleware(), JokeHandler)
-		api.POST("/jokes/like/:jokeID", auth.authMiddleware(), LikeJoke)
+		api.GET("/jokes", auth.AuthMiddleware(), JokeHandler)
+		api.POST("/jokes/like/:jokeID", auth.AuthMiddleware(), LikeJoke)
 	}
 	// Start the app
 	router.Run(":" + os.Getenv("LISTEN_PORT"))
@@ -83,6 +87,7 @@ func JokeHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, jokes)
 }
 
+// LikeJoke to perform likes
 func LikeJoke(c *gin.Context) {
 	// Check joke ID is valid
 	if jokeid, err := strconv.Atoi(c.Param("jokeID")); err == nil {

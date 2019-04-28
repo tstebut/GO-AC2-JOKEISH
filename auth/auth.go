@@ -87,7 +87,7 @@ func getPemCert(token *jwt.Token) (string, error) {
 }
 
 // authMiddleware intercepts the requests, and check for a valid jwt token
-func authMiddleware() gin.HandlerFunc {
+func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Get the client secret key
 		err := jwtMiddleWare.CheckJWT(c.Writer, c.Request)
