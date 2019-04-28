@@ -18,21 +18,6 @@ type Response struct {
 	Message string `json:"message"`
 }
 
-// Jwks Jwks
-type Jwks struct {
-	Keys []JSONWebKeys `json:"keys"`
-}
-
-// JSONWebKeys JSONWebKeys
-type JSONWebKeys struct {
-	Kty string   `json:"kty"`
-	Kid string   `json:"kid"`
-	Use string   `json:"use"`
-	N   string   `json:"n"`
-	E   string   `json:"e"`
-	X5c []string `json:"x5c"`
-}
-
 // Joke joke
 type Joke struct {
 	ID    int    `json:"id" binding:"required"`
@@ -42,18 +27,18 @@ type Joke struct {
 
 /** we'll create a list of jokes */
 var jokes = []Joke{
-	Joke{1, 0, "Did you hear about the restaurant on the moon? Great food, no atmosphere."},
-	Joke{2, 0, "What do you call a fake noodle? An Impasta."},
-	Joke{3, 0, "How many apples grow on a tree? All of them."},
-	Joke{4, 0, "Want to hear a joke about paper? Nevermind it's tearable."},
-	Joke{5, 0, "I just watched a program about beavers. It was the best dam program I've ever seen."},
-	Joke{6, 0, "Why did the coffee file a police report? It got mugged."},
-	Joke{7, 0, "How does a penguin build it's house? Igloos it together."},
-	Joke{8, 0, "Dad, did you get a haircut? No I got them all cut."},
-	Joke{9, 0, "What do you call a Mexican who has lost his car? Carlos."},
-	Joke{10, 0, "Dad, can you put my shoes on? No, I don't think they'll fit me."},
-	Joke{11, 0, "Why did the scarecrow win an award? Because he was outstanding in his field."},
-	Joke{12, 0, "Why don't skeletons ever go trick or treating? Because they have no body to go with."},
+	Joke{1, 0, "Il y a 10 catégories de personnes: ceux qui comprennent le binaire...et les autres!"},
+	Joke{2, 0, "Que dit une mère qui sert à dîner à son fils geek ? – ALT TAB"},
+	Joke{3, 0, "Un homme met à jour le mot de passe de son ordinateur. Il tape « monpenis ». Sur l’écran, le message suivant s’affiche : « Erreur. Trop court. »"},
+	Joke{4, 0, "Chuck Norris a tweeté une fois. Les serveurs ont crashés."},
+	Joke{5, 0, "De nos jours, le zip ça devient rar(e)."},
+	Joke{6, 0, "Linux a un noyau, Windows a des pépins."},
+	Joke{7, 0, "Windows a détecté que vous n’aviez pas de clavier. Appuyez sur ‘F9′ pour continuer."},
+	Joke{8, 0, "Quel animal a le plus de mémoire ? C’est l’agneau car il a une mémoire d’au moins 2 gigots."},
+	Joke{9, 0, "Papa, dis-moi comment je suis né. \n – Très bien, il fallait bien que l’on en parle un jour ! Papa et maman se sont copier/coller dans un Chat sur MSN. Papa a fixé un rancard via e-mail à maman et se sont retrouvés dans les toilettes d’un cybercafé. Après, maman a fait quelques downloads du memory stick de papa. Lorsque papa fut prêt pour l’upload, nous avons découvert que nous n’avions pas mis de firewall. Il était trop tard pour faire delete, neuf mois plus tard le satané virus apparaissait."},
+	Joke{10, 0, "Microsoft va encore s’enrichir et viendra supplanter toutes les autres … Effectivement ils vont déposer une demande de licence pour chacun de ses bugs"},
+	Joke{11, 0, "Il parait qu’il existe une distribution Linux buguée, pour les nostalgiques de Windows."},
+	Joke{12, 0, "La seule raison pour laquelle il est utile d’utiliser Windows, c’est pour tester un virus."},
 }
 
 var jwtMiddleWare *jwtmiddleware.JWTMiddleware
@@ -61,6 +46,10 @@ var jwtMiddleWare *jwtmiddleware.JWTMiddleware
 func main() {
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
+
+	// Auth handler
+	auth := new(auth.Auth)
+	auth.Init()
 
 	// Serve the frontend
 	router.Use(static.Serve("/", static.LocalFile("./views", true)))

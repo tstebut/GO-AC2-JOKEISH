@@ -145,12 +145,12 @@ class LoggedIn extends React.Component {
       <div className="container">
         <br />
         <span className="pull-right">
-          <a onClick={this.logout}>Log out</a>
+          <a onClick={this.logout}>Se déconnecter</a>
         </span>
         <h2>Jokeish</h2>
-        <p>Let's feed you with some funny Jokes!!!</p>
+        <p>C'est partit pour quelques blagues !!!</p>
         <div className="row">
-          <div className="container">
+          <div className="joke-container">
             {this.state.jokes.map(function(joke, i) {
               return <Joke key={i} joke={joke} />;
             })}
@@ -190,8 +190,7 @@ class Joke extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-4">
-        <div className="panel panel-default">
+        <div className="panel panel-default joke-ctn">
           <div className="panel-heading">
             #{this.props.joke.id}{" "}
             <span className="pull-right">{this.state.liked}</span>
@@ -204,7 +203,6 @@ class Joke extends React.Component {
             </a>
           </div>
         </div>
-      </div>
     );
   }
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Jokeish App</title>
+  <title>Joke-ish, la boite à blagues</title>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0/9.0/auth0.min.js"></script>
   <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
@@ -14,7 +14,17 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .joke-hld{
-      height: 10vh !important;
+      min-height: 10vh !important;
+      width: 100%;
+    }
+    .joke-ctn{
+      grid-template-rows: 35px auto 50px;
+      display: grid;
+    }
+    .joke-container{
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      display:inline-grid;
+      grid-column-gap: 20px;
     }
   </style>
 </head>
