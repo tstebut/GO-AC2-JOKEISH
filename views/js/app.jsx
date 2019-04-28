@@ -1,7 +1,8 @@
-const AUTH0_CLIENT_ID = "aIAOt9fkMZKrNsSsFqbKj5KTI0ObTDPP";
-const AUTH0_DOMAIN = "hakaselabs.auth0.com";
+const AUTH0_CLIENT_ID = "DNrBHs1rf6DHxfSpxZ0dH8y3fVcevShP";
+const AUTH0_DOMAIN = "go-helloworld-go.eu.auth0.com";
 const AUTH0_CALLBACK_URL = location.href;
-const AUTH0_API_AUDIENCE = "golang-gin";
+//const AUTH0_API_AUDIENCE = "golang-gin";
+const AUTH0_API_AUDIENCE = "https://8081-dot-7170711-dot-devshell.appspot.com/api";
 
 class App extends React.Component {
   parseHash() {
@@ -125,7 +126,8 @@ class LoggedIn extends React.Component {
   }
 
   serverRequest() {
-    $.get("http://localhost:3000/api/jokes", res => {
+    $.get("/api/jokes", res => {
+      console.log("res... ", res);
       this.setState({
         jokes: res
       });
@@ -133,7 +135,9 @@ class LoggedIn extends React.Component {
   }
 
   componentDidMount() {
+    console.log("Mounting component");
     this.serverRequest();
+    console.log("Ccomponent did mount");
   }
 
   render() {
@@ -174,7 +178,7 @@ class Joke extends React.Component {
   }
   serverRequest(joke) {
     $.post(
-      "http://localhost:3000/api/jokes/like/" + joke.id,
+      "/api/jokes/like/" + joke.id,
       { like: 1 },
       res => {
         console.log("res... ", res);

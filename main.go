@@ -100,7 +100,7 @@ func main() {
 		api.POST("/jokes/like/:jokeID", authMiddleware(), LikeJoke)
 	}
 	// Start the app
-	router.Run(":3000")
+	router.Run(":" + os.Getenv("LISTEN_PORT"))
 }
 
 func getPemCert(token *jwt.Token) (string, error) {
@@ -151,6 +151,7 @@ func authMiddleware() gin.HandlerFunc {
 // JokeHandler returns a list of jokes available (in memory)
 func JokeHandler(c *gin.Context) {
 	c.Header("Content-Type", "application/json")
+	c.Header("Access-Control-Allow-Origin", "*")
 
 	c.JSON(http.StatusOK, jokes)
 }
