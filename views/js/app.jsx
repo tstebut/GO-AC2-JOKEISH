@@ -92,13 +92,13 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-xs-8 col-xs-offset-2 jumbotron text-center">
             <h1>Jokeish</h1>
-            <p>A load of Dad jokes XD</p>
-            <p>Sign in to get access </p>
+            <p>Faites le plein de blagues XD</p>
+            <p>Connectez-vous</p>
             <a
               onClick={this.authenticate}
               className="btn btn-primary btn-lg btn-login btn-block"
             >
-              Sign In
+              Connection
             </a>
           </div>
         </div>
@@ -147,8 +147,8 @@ class LoggedIn extends React.Component {
         <span className="pull-right">
           <a onClick={this.logout}>Se déconnecter</a>
         </span>
-        <h2>Jokeish</h2>
-        <p>C'est partit pour quelques blagues !!!</p>
+        <h2>Mais c'est une blague ??!</h2>
+        <p>C'est parti pour quelques blagues !!!</p>
         <div className="row">
           <div className="joke-container">
             {this.state.jokes.map(function(joke, i) {
