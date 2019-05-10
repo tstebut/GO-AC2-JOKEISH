@@ -167,7 +167,22 @@ class Joke extends React.Component {
     this.state = {
       jokes: []
     };
+    this.joke = this.joke.bind(this);
     this.serverRequest = this.serverRequest.bind(this);
+  }
+
+  joke() {
+    let joke = this.props.joke;
+  }
+  serverRequest(joke) {
+    $.get(
+      "/api/jokes",
+      res => {
+        console.log("res... ", res);
+        this.setState({ jokes: res });
+        this.props.jokes = res;
+      }
+    );
   }
 
   render() {

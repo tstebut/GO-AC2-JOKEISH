@@ -18,5 +18,5 @@ env: flex
 env_variables:
   AUTH0_DOMAIN: 'https://go-helloworld-go.eu.auth0.com/'
   AUTH0_API_AUDIENCE: 'https://go-hello-world-go.appspot.com/api'
-  LISTEN_PORT: '8081'
+  LISTEN_PORT: '8083'
 # [END runtime]
