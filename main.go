@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"os"
 
+	"./auth"
+
 	jwtmiddleware "github.com/auth0/go-jwt-middleware"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -42,6 +44,10 @@ func main() {
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
+	// Auth handler
+	auth := new(auth.Auth)
+	auth.Init()
+
 	// Serve the frontend
 	router.Use(static.Serve("/", static.LocalFile("./views", true)))
 
@@ -52,7 +58,7 @@ func main() {
 				"message": "pong",
 			})
 		})
-		api.GET("/jokes", JokeHandler)
+		api.GET("/jokes", auth.AuthMiddleware(), JokeHandler)
 	}
 	// Start the app
 	router.Run(":" + os.Getenv("LISTEN_PORT"))
