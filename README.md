@@ -1,4 +1,4 @@
-# Build a Golang app with the Gin framework, and authenticate with Auth0 + JWT
+# Build a Golang app with the Gin framework
 
 This repo contains the code samples for the [Build a Golang app with the Gin framework, and authenticate with Auth0 + JWT ](https://hakaselogs.me/2018-04-20/building-a-web-app-with-go-gin-and-react) article.
 
@@ -17,4 +17,3 @@ This repo contains the code samples for the [Build a Golang app with the Gin fra
 [Tanguy von Stebut](https://monSite)
 
 ## License
-
