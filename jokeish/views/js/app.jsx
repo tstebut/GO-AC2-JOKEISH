@@ -165,21 +165,24 @@ class Joke extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      liked: "",
       jokes: []
     };
-    this.joke = this.joke.bind(this);
+    this.like = this.like.bind(this);
     this.serverRequest = this.serverRequest.bind(this);
   }
 
-  joke() {
+  like() {
     let joke = this.props.joke;
+    this.serverRequest(joke);
   }
   serverRequest(joke) {
-    $.get(
-      "/api/jokes",
+    $.post(
+      "/api/jokes/like/" + joke.id,
+      { like: 1 },
       res => {
         console.log("res... ", res);
-        this.setState({ jokes: res });
+        this.setState({ liked: "Liked!", jokes: res });
         this.props.jokes = res;
       }
     );
@@ -190,10 +193,14 @@ class Joke extends React.Component {
         <div className="panel panel-default joke-ctn">
           <div className="panel-heading">
             #{this.props.joke.id}{" "}
+            <span className="pull-right">{this.state.liked}</span>
           </div>
           <div className="panel-body joke-hld">{this.props.joke.joke}</div>
           <div className="panel-footer">
-            (c) Sentelis
+            {this.props.joke.likes} Likes &nbsp;
+            <a onClick={this.like} className="btn btn-default">
+              <span className="glyphicon glyphicon-thumbs-up" />
+            </a>
           </div>
         </div>
     );
