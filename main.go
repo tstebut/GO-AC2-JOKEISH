@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"os"
 
+	jwtmiddleware "github.com/auth0/go-jwt-middleware"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
@@ -34,6 +35,8 @@ var jokes = []Joke{
 	Joke{11, "Il parait qu’il existe une distribution Linux buguée, pour les nostalgiques de Windows."},
 	Joke{12, "La seule raison pour laquelle il est utile d’utiliser Windows, c’est pour tester un virus."},
 }
+
+var jwtMiddleWare *jwtmiddleware.JWTMiddleware
 
 func main() {
 	// Set the router as the default one shipped with Gin
