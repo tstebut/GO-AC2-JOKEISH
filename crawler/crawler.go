@@ -4,9 +4,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
+
+	"github.com/jackdanger/collectlinks"
 )
 
 func main() {
@@ -27,6 +28,10 @@ func retrieve(uri string) {
 		return
 	}
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
+
+	links := collectlinks.All(resp.Body)
+
+	for _, link := range links {
+		fmt.Println(link)
+	}
 }
